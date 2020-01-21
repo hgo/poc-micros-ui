@@ -4,7 +4,7 @@
 		"secure": false,
 		"logLevel": "debug"
 	},
-	"/musterilog/**": {
+	"/log-customer/**": {
 		"target": "http://ec2-3-16-13-137.us-east-2.compute.amazonaws.com:9200",
 		"secure": false,
 		"logLevel": "debug"
