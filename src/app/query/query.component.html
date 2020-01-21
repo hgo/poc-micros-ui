@@ -4,15 +4,15 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header card-header-danger">
-						<h4 class="card-title">Müşteri Sorgulama</h4>
-						<p class="card-category">Müşteri seçimi</p>
+						<h4 class="card-title">Sorgulama</h4>
+						<p class="card-category">Elastic Search</p>
 					</div>
 					<div class="card-body">
 						<form>
 							<div class="row">
 								<div class="col-md-12">
 									<mat-form-field>
-										<mat-label>Elastik Query</mat-label>
+										<mat-label>Elastic Query</mat-label>
 										<input id="search-input" matInput placeholder="logobj.ad:te*" name="key" [(ngModel)]="key" required (keyup.enter)="searchElastic()" required />
 										<mat-icon matSuffix>search</mat-icon>
 									</mat-form-field>
@@ -22,10 +22,9 @@
 						</form>
 						<div class="row" *ngIf="result!=null">
 							<mat-card class="w-100">
-								<p>{{result}}</p>
+								<ngx-json-viewer [json]="result" [expanded]="false"></ngx-json-viewer>
 							</mat-card>
 						</div>
-
 					</div>
 				</div>
 			</div>

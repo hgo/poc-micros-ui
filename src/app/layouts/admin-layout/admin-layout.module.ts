@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminLayoutRoutes } from './admin-layout.routing';
 import { QueryComponent } from '../../query/query.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import {
   MatButtonModule,
   MatInputModule,
@@ -45,7 +46,9 @@ import { CcComponent } from 'app/cc/cc.component';
     MatExpansionModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxJsonViewerModule
+
   ],
   declarations: [
     QueryComponent,

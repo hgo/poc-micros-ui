@@ -8,8 +8,10 @@ import { GlobalService } from 'app/global/global';
 })
 export class QueryComponent implements OnInit {
     key: string;
-    result: string;
-    constructor(private service: CrmService, private global: GlobalService) { }
+    result: any;
+    constructor(private service: CrmService, private global: GlobalService) {
+
+    }
 
     ngOnInit() {
     }
@@ -18,7 +20,7 @@ export class QueryComponent implements OnInit {
         this.service.searchLog(this.key).subscribe(res => {
             this.global.hideLoading();
             if (res != null) {
-                this.result = JSON.stringify(res);
+                this.result = res;
             } else {
                 this.global.openSnackBar('Log bulunamadı !', 'Tamam');
             }
