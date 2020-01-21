@@ -20,17 +20,21 @@ export class CcComponent implements OnInit {
     const tckn = this.tckn;
     this.service.findCustomer(tckn).subscribe(res => {
       this.global.hideLoading();
-      if (res.result != null) {
-        this.customer = res.result.customer;
-        this.getLog();
+      if (res != null) {
+        this.customer = res[0];
+        console.log(res);
       } else {
         this.global.openSnackBar('Müşteri bulunamadı !', 'Tamam');
       }
     }
     );
   }
-  getLog() {
-
+  save() {
+    this.service.saveCustomer(this.customer).subscribe(result => {
+      if (result != null) {
+        this.global.openSnackBar('Kayıt yapılmıştır.', 'Tamam');
+      }
+    })
   }
 
 }

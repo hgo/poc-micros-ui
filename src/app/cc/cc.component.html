@@ -17,12 +17,30 @@
                   </mat-form-field>
                 </div>
               </div>
-              <div class="row">
-                <mat-card>
-                  <p>{{result}}</p>
-                </mat-card>
-              </div>
+
             </form>
+            <div class="row" *ngIf="customer!=null">
+              <mat-card class="w-100">
+                <mat-form-field>
+                  <mat-label>Id</mat-label>
+                  <input matInput placeholder="Id" [(ngModel)]="customer.id" disabled>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Ad</mat-label>
+                  <input matInput placeholder="Ad" [(ngModel)]="customer.firstName" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Soyad</mat-label>
+                  <input matInput placeholder="Soyad" [(ngModel)]="customer.lastName" required>
+                </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Tc Kimlik</mat-label>
+                  <input matInput numbersOnly placeholder="Tc Kimlik" [(ngModel)]="customer.nationalId" maxlength="11" required minlength="11">
+                </mat-form-field>
+              </mat-card>
+              <button class="btn btn-danger btn-round" (click)="save()">Kaydet</button>
+            </div>
+
           </div>
         </div>
       </div>
