@@ -1,40 +1,21 @@
 import { Injectable } from '@angular/core';
-import { NgxSoapService, Client, ISoapMethodResponse } from 'ngx-soap';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'environments/environment';
-import { OrderRequest } from 'app/model/orderRequest';
 import { Observable } from 'rxjs';
-import { Order } from 'app/model/order';
+import { Customer } from 'app/model/customer';
 @Injectable({
   providedIn: 'root'
 })
 export class CrmService {
-  private customerClient: Client;
-  private catalogClient: Client;
-
-  constructor(private soap: NgxSoapService, private http: HttpClient) {
-    this.soap.createClient('assets/customer.wsdl').then(client => {
-      this.customerClient = client;
-      console.log(client, 'customerClient');
-    });
-    this.soap.createClient('assets/catalog.wsdl').then(client => {
-      this.catalogClient = client;
-      console.log(client, 'catalogClient');
-    });
+  constructor(private http: HttpClient) {
   }
-  getCustomer() {
-    return this.customerClient.call('listCustomers', {});
+  findCustomer(tckn: number): Observable<Customer[]> {
+    return this.http.get<Customer[]>(`${environment.customerService}?filter=nationalId%${tckn}`);
   }
-  findCustomer(tckn: number) {
-    return this.customerClient.call('findCustomer', { tckn: tckn });
+  saveCustomer(customer: Customer) {
+    return this.http.put(environment.customerService, customer, { headers: { 'Content-Type': 'application/json' } });
   }
-  getOffers() {
-    return this.catalogClient.call('listOffers', {});
-  }
-  sendOrder(order: OrderRequest) {
-    return this.http.post(environment.orderService, order);
-  }
-  getAssets(customerId: string): Observable<Order[]> {
-    return this.http.get<Order[]>(`${environment.assetService}?customerId=${customerId}`);
+  searchLog(query: string) {
+    return this.http.get(`${environment.elasticSearchService}q=${query}`)
   }
 }

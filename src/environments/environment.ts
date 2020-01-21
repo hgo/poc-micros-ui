@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  orderService: '/order/api/orders',
-  assetService: '/asset/api/assets'
+  customerService: '/poc2-customer-api/1.0.0/customers',
+  elasticSearchService: '/musterilog/_search?'
 };
