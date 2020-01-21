@@ -10,7 +10,7 @@ export class CrmService {
   constructor(private http: HttpClient) {
   }
   findCustomer(tckn: number): Observable<Customer[]> {
-    return this.http.get<Customer[]>(`${environment.customerService}?filter=nationalId%${tckn}`);
+    return this.http.get<Customer[]>(`${environment.customerService}?filter=nationalId%3D${tckn}`);
   }
   saveCustomer(customer: Customer) {
     return this.http.put(environment.customerService, customer, { headers: { 'Content-Type': 'application/json' } });
